@@ -29,18 +29,26 @@ file_in_repo = sys.argv[1]
 contributors = {}
 
 print("Retrieving GitHub contributor list...")
-wait_until_api_allowed()
-for contributor in requests.get(f"https://api.github.com/repos/{os.environ['GITHUB_REPOSITORY']}/contributors", params={'anon': 1}).json():
-    name = get_name(contributor)
+contributors_url = f"https://api.github.com/repos/{os.environ['GITHUB_REPOSITORY']}/contributors"
+while True:
+    wait_until_api_allowed()
+    r = requests.get(contributors_url, params={'anon': 1})
+    for contributor in r.json():
+        name = get_name(contributor)
 
-    contributions = contributor["contributions"]
+        contributions = contributor["contributions"]
 
-    if name in contributors:
-        contributions += contributors[name]
+        if name in contributors:
+            contributions += contributors[name]
 
-    contributors[name] = contributions
+        contributors[name] = contributions
 
-    print(f"Set contribution count for {name} to {contributions}")
+        print(f"Set contribution count for {name} to {contributions}")
+
+    if not 'next' in r.links:
+        break
+
+    contributors_url = r.links['next']['url']
 
 print("Writing contributor list to file...")
 with open(file_in_repo, "w") as output_file:
