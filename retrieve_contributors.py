@@ -35,6 +35,10 @@ while True:
     r = requests.get(contributors_url, params={'anon': 1})
     for contributor in r.json():
         name = get_name(contributor)
+        
+        if any(bot_string in name for bot_string in ["(bot)", "[bot]"]):
+            print(f"Ignoring {name}, matches bot string")
+            continue
 
         contributions = contributor["contributions"]
 
