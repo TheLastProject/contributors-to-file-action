@@ -8,14 +8,6 @@ This action retrieves your repo's list of contributors and writes it to a reques
 
 **Required** The location of the file in the repository to write the contributor list to.
 
-### `git_user`
-
-The name to commit under. Default: 'thelastproject/contributors-to-file'.
-
-### `git_email`
-
-The email to commit under. Default: 'no-reply@github.com'.
-
 ## Example usage
 
 Put the following in `.github/workflows/main.yml`:
@@ -30,9 +22,14 @@ jobs:
       uses: actions/checkout@v2
     - name: Update contributors
       id: update_contributors
-      uses: TheLastProject/contributors-to-file-action@v1
+      uses: TheLastProject/contributors-to-file-action@v2
       with:
-        file_in_repo: example/index.html
+        file_in_repo: example/index.txt
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        title: "Update contributors"
+        commit-message: "Update contributors"
 on:
   schedule:
     - cron: '0 0 * * *'

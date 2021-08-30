@@ -4,14 +4,6 @@ inputs:
   file_in_repo:
     description: 'The location of the file in the repository to write to'
     required: true
-  git_user:
-    description: 'The name of the git user'
-    required: true
-    default: 'thelastproject/contributors-to-file'
-  git_email:
-    description: 'The email of the git user'
-    required: true
-    default: 'no-reply@github.com'
 outputs:
   status:
     description: 'If the file has changed'
@@ -20,5 +12,3 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.file_in_repo }}
-    - ${{ inputs.git_user }}
-    - ${{ inputs.git_email }}
