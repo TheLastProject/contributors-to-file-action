@@ -22,7 +22,7 @@ def get_name(contributor):
 
         return contributor_data["login"]
 
-    return contributor["login"]
+    return contributor["name"]
 
 file_in_repo = sys.argv[1]
 
