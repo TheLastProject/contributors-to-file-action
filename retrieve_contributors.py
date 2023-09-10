@@ -29,9 +29,9 @@ def get_name(contributor):
     return contributor["login"]
 
 
-file_in_repo = sys.argv[1]
+token = sys.argv[1]
+file_in_repo = sys.argv[2]
 
-token = os.environ.get("GITHUB_TOKEN") or None
 headers = dict(Authorization=f"token {token}") if token else {}
 
 if token:
