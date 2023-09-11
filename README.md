@@ -31,7 +31,7 @@ jobs:
       uses: actions/checkout@v3
     - name: Update contributors
       id: update_contributors
-      uses: TheLastProject/contributors-to-file-action@v2
+      uses: TheLastProject/contributors-to-file-action@v3
       with:
         file_in_repo: example/index.txt
     - name: Create Pull Request
