@@ -14,5 +14,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.token }}
     - ${{ inputs.file_in_repo }}
+  env:
+    GITHUB_TOKEN: ${{ inputs.token }}
