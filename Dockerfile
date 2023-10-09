@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:latest
 
 RUN apk add --no-cache coreutils git python3 py3-requests
 
