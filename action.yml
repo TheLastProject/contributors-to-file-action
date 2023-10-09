@@ -7,9 +7,6 @@ inputs:
   file_in_repo:
     description: 'The location of the file in the repository to write to'
     required: true
-outputs:
-  status:
-    description: 'If the file has changed'
 runs:
   using: 'docker'
   image: 'Dockerfile'
