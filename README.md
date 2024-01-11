@@ -4,6 +4,12 @@ This action retrieves your repo's list of contributors and writes it to a reques
 
 ## Inputs
 
+### `repository`
+
+GitHub repository to retrieve contributors of.
+
+Defaults to the current repository.
+
 ### `token`
 
 GitHub token to use, increases rate limit and thus reduces action runtime.

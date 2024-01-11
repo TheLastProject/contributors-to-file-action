@@ -31,7 +31,7 @@ def get_name(contributor):
 
 file_in_repo = sys.argv[1]
 
-token = os.environ.get("GITHUB_TOKEN") or None
+token = os.environ.get("TOKEN") or None
 headers = dict(Authorization=f"token {token}") if token else {}
 
 if token:
@@ -39,8 +39,8 @@ if token:
 
 contributors = {}
 
-print("Retrieving GitHub contributor list...")
-contributors_url = f"https://api.github.com/repos/{os.environ['GITHUB_REPOSITORY']}/contributors"
+print(f"Retrieving GitHub contributor list for {os.environ['REPOSITORY']}...")
+contributors_url = f"https://api.github.com/repos/{os.environ['REPOSITORY']}/contributors"
 while True:
     wait_until_api_allowed()
     r = requests.get(contributors_url, params={'anon': 1}, headers=headers)
