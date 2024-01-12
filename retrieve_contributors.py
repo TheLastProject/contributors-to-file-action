@@ -30,6 +30,7 @@ def get_name(contributor):
 
 
 file_in_repo = sys.argv[1]
+min_commit_count = int(sys.argv[2])
 
 token = os.environ.get("TOKEN") or None
 headers = dict(Authorization=f"token {token}") if token else {}
@@ -66,7 +67,8 @@ while True:
 
     contributors_url = r.links['next']['url']
 
-print("Writing contributor list to file...")
+print(f"Writing all contributors who made at least {min_commit_count} commit(s) to file...")
 with open(file_in_repo, "w") as output_file:
     for contributor in sorted(contributors.items(), key=lambda kv: kv[1], reverse=True):
-        output_file.write(f"{contributor[0]}\n")
+        if contributor[1] >= min_commit_count:
+            output_file.write(f"{contributor[0]}\n")

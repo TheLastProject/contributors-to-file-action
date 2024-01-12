@@ -4,6 +4,16 @@ This action retrieves your repo's list of contributors and writes it to a reques
 
 ## Inputs
 
+### `file_in_repo`
+
+**Required** The location of the file in the repository to write the contributor list to.
+
+### `min_commit_count`
+
+The minimum number of commits to consider someone a contributor.
+
+Defaults to 1.
+
 ### `repository`
 
 GitHub repository to retrieve contributors of.
@@ -17,10 +27,6 @@ GitHub token to use, increases rate limit and thus reduces action runtime.
 To not use a token, set value to an empty string.
 
 Defaults to [automatically generated temporary GITHUB_TOKEN](https://docs.github.com/en/actions/security-guides/automatic-token-authentication).
-
-### `file_in_repo`
-
-**Required** The location of the file in the repository to write the contributor list to.
 
 ## Example usage
 
